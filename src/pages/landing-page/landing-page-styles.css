@@ -1,0 +1,51 @@
+
+.bg-color{
+    background-color: #f6f5f7;
+    height: 100vh;
+}
+
+.landing-page{
+    /* background: url(./lock.jpg); */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.main-center{
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+}
+
+img.lock-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.link-class{
+    margin: 20px;
+    padding: 10px;
+    background-color:red;
+    border-radius: 20px;
+}
+
+.link{
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.link hover{
+    text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+    img.lock-img{
+        width: 150px;
+        height: 150px;
+        border: 40%;
+    }
+}
