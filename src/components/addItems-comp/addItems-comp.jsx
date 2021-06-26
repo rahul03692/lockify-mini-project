@@ -24,8 +24,9 @@ class AddItems extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-    db.collection("locks")
+    const userUid=JSON.parse(localStorage.getItem("userData")).uid;
+    
+    db.collection(`users/${userUid}/locks`)
       .add({
         name: event.target.name.value,
         isLocked: event.target.isLocked.value,

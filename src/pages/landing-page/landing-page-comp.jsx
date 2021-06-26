@@ -19,9 +19,25 @@ const LandingPage = ()=>{
                 <h1>Lockify</h1>
                 <div className="link-class">
                     {
-                        userData?<Link to="/home" class="home"> Sign In</Link>
-                        :<Link to="/sign-in" class="link"> Sign In</Link>
+                        userData?
+                        <div class="signin-signup">
+                            <div className="sign-in">
+                                <Link to="/home" class="link"> Sign In</Link>
+                            </div>
+                            <div className="sign-up">
+                                <Link to="/sign-up" class="link"> Sign Up</Link>
+                            </div>
+                        </div>
+                        :<div class="signin-signup">
+                            <div className="sign-in">
+                                <Link to="/sign-in" class="link"> Sign In</Link>
+                            </div>
+                            <div className="sign-up">
+                                <Link to="/sign-up" class="link"> Sign Up</Link>
+                            </div>
+                        </div>
                     }
+
                 </div>
             </div>
         </div>
