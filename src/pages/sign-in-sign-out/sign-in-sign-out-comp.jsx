@@ -30,9 +30,16 @@ class SignInSignOut extends React.Component {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((resp) => {
+
+        const user={
+          email:resp.user.email,
+          uid:resp.user.uid,
+        }
+
+
         this.setState({ email: "", password: "" });
         //setUser(true);
-        localStorage.setItem("userData", resp);
+        localStorage.setItem("userData", JSON.stringify(user));
         console.log(localStorage.getItem("userData"));
         this.props.history.push("/home");
       })

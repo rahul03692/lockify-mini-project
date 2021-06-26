@@ -19,7 +19,7 @@ class Home extends React.Component {
   getData = async () => {
       const array=[];
       try{
-        const snapshot=await db.collection("locks").get();
+        const snapshot=await db.collection("locks").onSnapshot();
 
         snapshot.forEach(doc=>{
             array.push(doc.data());

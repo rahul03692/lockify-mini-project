@@ -6,7 +6,11 @@ import lock from './lock.jpg';
 import './landing-page-styles.css';
 
 
+
 const LandingPage = ()=>{
+
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
     return(
         <div className="bg-color">
             <div className="landing-page">
@@ -14,7 +18,10 @@ const LandingPage = ()=>{
             <div className="main-center">
                 <h1>Lockify</h1>
                 <div className="link-class">
-                    <Link to="/sign-in" class="link"> Sign In</Link>
+                    {
+                        userData.email?<Link to="/home" class="home"> Sign In</Link>
+                        :<Link to="/sign-in" class="link"> Sign In</Link>
+                    }
                 </div>
             </div>
         </div>
