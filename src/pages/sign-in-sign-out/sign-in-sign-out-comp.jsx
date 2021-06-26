@@ -1,6 +1,6 @@
 import React from "react";
 
-import { auth, SignInWithGoogle } from "../../firebase/firebase";
+import { auth ,Provider} from "../../firebase/firebase";
 
 import "./sign-in-sign-out-styles.css";
 
@@ -49,6 +49,20 @@ class SignInSignOut extends React.Component {
       });
   };
 
+  SignInWithGoogle = ()=>{
+    Provider.setCustomParameters({ prompt: "select_account" });
+    auth.signInWithPopup(Provider).then((result)=>{
+      const user = {
+        email:result.user.email,
+        uid:result.user.uid
+      };
+      localStorage.setItem("userData",JSON.stringify(user));
+      this.props.history.push("/home");
+    }).catch(err=>{
+      console.log(err.message);
+    });
+
+  }
   render() {
     return (
       <div className="signin-signout body-class form-container">
@@ -79,9 +93,9 @@ class SignInSignOut extends React.Component {
 
             <div className="buttons-class">
               <button type="submit">Sign In</button>
-              <button onClick={SignInWithGoogle}>Google Sign In</button>
             </div>
           </form>
+          <button onClick={this.SignInWithGoogle}>Google Sign In</button>
         </div>
       </div>
     );

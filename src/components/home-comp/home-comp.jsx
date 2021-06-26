@@ -20,7 +20,6 @@ class Home extends React.Component {
   }
 
   LogOut = () => {
-    console.log(auth.currentUser);
     auth.signOut().then(()=>{
       <Redirect to="/" />
     }).catch(err=>{
@@ -54,7 +53,7 @@ class Home extends React.Component {
         <h1>Locks List</h1>
         <h6 className="logged-in-email">Logged in as:  {userEmail} </h6>
         <div className="logout">
-          <button onClick={this.LogOut()}>LogOut</button>
+          <button onClick={this.LogOut}>LogOut</button>
         </div>
         <div className="list">
           {data.map((item) => (
