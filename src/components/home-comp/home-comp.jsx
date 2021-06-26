@@ -18,23 +18,19 @@ class Home extends React.Component {
 
   getData = async () => {
       const array=[];
-      try{
-        const snapshot=await db.collection("locks").onSnapshot();
-
-        snapshot.forEach(doc=>{
-            array.push(doc.data());
+      db.collection("locks")
+      .onSnapshot((snapshot) => {
+        let changes = snapshot.docChanges();
+        changes.forEach((change) => {
+          array.push(change.doc.data());
         });
-
-        console.log(array);
         this.setState({data:array});
-      }
-      catch(err){
-          console.log(err.message);
-      }
+      });
   };
 
   render() {
-    const data = this.state.data?this.state.data:null;
+    
+    const data=this.state.data;
 
     return (
       <div className="home-page">

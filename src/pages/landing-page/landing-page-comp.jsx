@@ -19,7 +19,7 @@ const LandingPage = ()=>{
                 <h1>Lockify</h1>
                 <div className="link-class">
                     {
-                        userData.email?<Link to="/home" class="home"> Sign In</Link>
+                        userData?<Link to="/home" class="home"> Sign In</Link>
                         :<Link to="/sign-in" class="link"> Sign In</Link>
                     }
                 </div>
