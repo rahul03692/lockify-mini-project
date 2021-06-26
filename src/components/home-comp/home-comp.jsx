@@ -20,7 +20,7 @@ class Home extends React.Component {
       const array=[];
       try{
         const snapshot=await db.collection("locks").onSnapshot();
-
+        console.log(snapshot)
         snapshot.forEach(doc=>{
             array.push(doc.data());
         });
