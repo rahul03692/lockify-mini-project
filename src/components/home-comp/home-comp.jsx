@@ -36,9 +36,9 @@ class Home extends React.Component {
       .onSnapshot((snapshot) => {
         let changes = snapshot.docChanges();
         changes.forEach((change) => {
-          console.log(change.doc.data());
-          array.push(change.doc.data());
+          array.push({data:change.doc.data(),uid:change.doc.id});
         });
+        
         this.setState({data:array});
       });
   };
@@ -57,7 +57,7 @@ class Home extends React.Component {
         </div>
         <div className="list">
           {data.map((item) => (
-            <Lists name={item.name} isLocked={item.isLocked} />
+            <Lists key={item.uid} name={item.data.name} isLocked={item.data.isLocked} uid={item.uid} />
           ))}
         </div>
       </div>
