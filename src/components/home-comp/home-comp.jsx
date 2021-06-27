@@ -1,8 +1,11 @@
 import React from "react";
+import { Redirect } from "react-router";
 
-import { db } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
+
 import Lists from "../lock-lists/lock-lists-comp";
-import './home-styles.css'
+import './home-styles.css';
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -16,12 +19,24 @@ class Home extends React.Component {
     this.getData();
   }
 
+  LogOut = () => {
+    auth.signOut().then(()=>{
+      <Redirect to="/" />
+    }).catch(err=>{
+      console.log(err.message);
+    });
+
+  }
   getData = async () => {
       const array=[];
-      db.collection("locks")
+      
+      const userUid=JSON.parse(localStorage.getItem("userData")).uid;
+
+      db.collection(`users/${userUid}/locks`)
       .onSnapshot((snapshot) => {
         let changes = snapshot.docChanges();
         changes.forEach((change) => {
+          console.log(change.doc.data());
           array.push(change.doc.data());
         });
         this.setState({data:array});
@@ -31,11 +46,14 @@ class Home extends React.Component {
   render() {
     
     const data=this.state.data;
+    const userEmail = JSON.parse(localStorage.getItem("userData")).email;
 
     return (
       <div className="home-page">
-        <div className="heading">
-          <h1>LOCK LIST</h1>
+        <h1>Locks List</h1>
+        <h6 className="logged-in-email">Logged in as:  {userEmail} </h6>
+        <div className="logout">
+          <button onClick={this.LogOut}>LogOut</button>
         </div>
         <div className="list">
           {data.map((item) => (

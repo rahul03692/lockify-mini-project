@@ -1,5 +1,5 @@
 import React from "react";
-import './lock-lists-styles.css';
+import "./lock-lists-styles.css";
 
 const Lists =(props)=>{
     console.log(props.isLocked);

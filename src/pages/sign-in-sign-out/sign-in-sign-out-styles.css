@@ -40,11 +40,16 @@ span {
 	text-align: center;
 }
 
-a {
+a{
 	color: #333;
-	font-size: 14px;
+	font-size: 18px;
 	text-decoration: none;
 	margin: 15px 0;
+}
+
+a:hover{
+	text-decoration: none;
+	color: white;
 }
 
 button {

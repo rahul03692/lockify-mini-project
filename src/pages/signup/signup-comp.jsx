@@ -1,21 +1,18 @@
 import React from "react";
 
-import { auth ,Provider} from "../../firebase/firebase";
+import "./signup-styles.css";
 
-import "./sign-in-sign-out-styles.css";
+import { auth ,db} from "../../firebase/firebase";
 
-class SignInSignOut extends React.Component {
+class SignUp extends React.Component {
   constructor() {
     super();
-
 
     this.state = {
       email: "",
       password: "",
     };
   }
-
-  // const {setUser}=this.props;
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,47 +25,39 @@ class SignInSignOut extends React.Component {
     const { email, password } = this.state;
 
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((resp) => {
-
-        const user={
-          email:resp.user.email,
-          uid:resp.user.uid,
-        }
-
+        const user = {
+          email: resp.user.email,
+          uid: resp.user.uid,
+        };
 
         this.setState({ email: "", password: "" });
-        //setUser(true);
         localStorage.setItem("userData", JSON.stringify(user));
-        console.log(localStorage.getItem("userData"));
-        this.props.history.push("/home");
+
+
+        //creating user with uid
+        const locksRef=db.doc(`users/${user.uid}`);
+        locksRef.get().then((ss)=>{
+          locksRef.collection("locks");
+          this.props.history.push("/home");
+        });
+      
+
       })
       .catch((err) => {
         alert(err.message);
         console.log(err.message);
       });
+
   };
 
-  SignInWithGoogle = ()=>{
-    Provider.setCustomParameters({ prompt: "select_account" });
-    auth.signInWithPopup(Provider).then((result)=>{
-      const user = {
-        email:result.user.email,
-        uid:result.user.uid
-      };
-      localStorage.setItem("userData",JSON.stringify(user));
-      this.props.history.push("/home");
-    }).catch(err=>{
-      console.log(err.message);
-    });
-
-  }
   render() {
     return (
-      <div className="signin-signout body-class form-container">
-        <h1>Already Have An Account</h1>
+      <div className="body-class">
+        <h1>Don't Have An Account</h1>
         <div>
-          <span>Sign In with your Email and Password</span>
+          <span>Sign Up with your Email and Password</span>
 
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="email">Email</label>
@@ -92,18 +81,13 @@ class SignInSignOut extends React.Component {
             />
 
             <div className="buttons-class">
-              <button type="submit">Sign In</button>
+              <button type="submit">Sign Up</button>
             </div>
           </form>
-          <button onClick={this.SignInWithGoogle}>Google Sign In</button>
         </div>
       </div>
     );
   }
 }
 
-// const mapDispatchToProps=(dispatch)=>({
-//   setUser:item => dispatch(setCurrentUser(item)),
-// });
-
-export default SignInSignOut;
+export default SignUp;
