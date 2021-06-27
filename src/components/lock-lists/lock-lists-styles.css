@@ -1,6 +1,17 @@
 
 .list-tiles{
-    display: flex;
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    padding: 1px;
+    
+}
+
+@media screen and (max-width: 500px) {
+  .list-tiles {
     flex-direction: column;
-    justify-content: space-between;
+    max-width: 300px;
+    height: auto;
+    margin-top: 10px;
+  } 
 }

@@ -21,3 +21,12 @@
 	height: 100vh;
 	margin: auto;
 }
+
+@media screen and (max-width: 500px) {
+  .list-tiles {
+    flex-direction: column;
+    max-width: 500px;
+    height: auto;
+    margin-top: 10px;
+  } 
+}

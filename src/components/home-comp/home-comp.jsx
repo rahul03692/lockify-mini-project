@@ -2,7 +2,7 @@ import React from "react";
 
 import { db } from "../../firebase/firebase";
 import Lists from "../lock-lists/lock-lists-comp";
-
+import './home-styles.css'
 class Home extends React.Component {
   constructor() {
     super();
@@ -34,7 +34,9 @@ class Home extends React.Component {
 
     return (
       <div className="home-page">
-        <h1>Locks List</h1>
+        <div className="heading">
+          <h1>LOCK LIST</h1>
+        </div>
         <div className="list">
           {data.map((item) => (
             <Lists name={item.name} isLocked={item.isLocked} />

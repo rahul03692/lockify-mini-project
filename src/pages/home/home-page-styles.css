@@ -3,3 +3,12 @@
     flex-direction: column;
     justify-content: center;
 }
+
+@media screen and (max-width: 500px) {
+  .home-page {
+    flex-direction: column;
+    max-width: 300px;
+    height: auto;
+    margin-top: 10px;
+  } 
+}
