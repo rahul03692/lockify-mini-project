@@ -13,8 +13,9 @@ const LandingPage = ()=>{
 
     return(
         <div className="bg-color">
+            <div className="bg"></div>
             <div className="landing-page">
-            <img src={lock} alt="lock" className="lock-img"/>
+           
             <div className="main-center">
                 <h1>Lockify</h1>
                 <div className="link-class">

@@ -20,7 +20,11 @@ class Home extends React.Component {
   }
 
   LogOut = () => {
+    localStorage.clear();
+
+    <Redirect to="/" />
     auth.signOut().then(()=>{
+      
       <Redirect to="/" />
     }).catch(err=>{
       console.log(err.message);

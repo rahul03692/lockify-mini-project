@@ -2,10 +2,10 @@ import "./App.css";
 //import Header from './components/header-comp/header-comp';
 //import MainBody from './components/main-body/main-body-comp';
 import SignInSignOut from "./pages/sign-in-sign-out/sign-in-sign-out-comp";
-import LandingPage from "./pages/landing-page/landing-page-comp";
 import HomePage from "./pages/home/home-page-comp";
 import { Switch, Route } from "react-router-dom";
 import SignUp from "./pages/signup/signup-comp";
+import LandingPage from "./pages/landing-page/landing-page-comp";
 
 function App() {
   
