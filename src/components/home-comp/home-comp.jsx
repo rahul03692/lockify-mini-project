@@ -54,17 +54,27 @@ class Home extends React.Component {
     const userEmail = JSON.parse(localStorage.getItem("userData")).email;
 
     return (
-      <div className="home-page">
-        <h1>Locks List</h1>
-        <h6 className="logged-in-email">Logged in as:  {userEmail} </h6>
-        <div className="logout">
-          <button onClick={this.LogOut}>LogOut</button>
-        </div>
-        <div className="list">
-          {data.map((item) => (
-            <Lists key={item.uid} name={item.data.name} isLocked={item.data.isLocked} uid={item.uid} />
-          ))}
-        </div>
+      <div >
+
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand">LOCKIFY</a>
+            <button className="btn btn-warning" onClick={this.LogOut}>LogOut</button>
+        </nav>
+        
+        
+          <div className="jumbotron jumbotron-fluid wel">
+            <div className="container">
+              <h3 className="display-4">WELCOME back</h3>
+              <h4 className="lead">{userEmail}</h4>
+            <h3 className="heading">Your lock list </h3>
+            <hr class="my-4"></hr>
+            <div className="list">
+              {data.map((item) => (
+                <Lists key={item.uid} name={item.data.name} isLocked={item.data.isLocked} uid={item.uid} />
+              ))}
+            </div>
+            </div>
+          </div>      
       </div>
     );
   }

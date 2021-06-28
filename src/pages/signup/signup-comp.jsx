@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./signup-styles.css";
+import { Link } from "react-router-dom";
 
 import { auth ,db} from "../../firebase/firebase";
 
@@ -55,9 +56,9 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="body-class">
-        <h1>Don't Have An Account</h1>
+        
         <div>
-          <span>Sign Up with your Email and Password</span>
+          <h2>SIGNUP <span>here</span></h2>
 
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="email">Email</label>
@@ -81,10 +82,14 @@ class SignUp extends React.Component {
             />
 
             <div className="buttons-class">
-              <button type="submit">Sign Up</button>
+              <button className="btn btn-primary" type="submit">Sign Up</button>
             </div>
+
           </form>
+
         </div>
+        <span>Already have account?  <Link to="/sign-in" class="link"> Login here</Link></span>
+
       </div>
     );
   }

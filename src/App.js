@@ -6,7 +6,7 @@ import HomePage from "./pages/home/home-page-comp";
 import { Switch, Route } from "react-router-dom";
 import SignUp from "./pages/signup/signup-comp";
 import LockUnlock from "./pages/lock-unlock-page/lock-unlock-page-comp";
-
+import LandingPage from "./pages/landing-page/landing-page-comp";
 function App() {
 
   return (

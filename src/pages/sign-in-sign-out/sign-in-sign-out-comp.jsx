@@ -1,6 +1,7 @@
 import React from "react";
 
 import { auth ,Provider} from "../../firebase/firebase";
+import { Link } from "react-router-dom";
 
 import "./sign-in-sign-out-styles.css";
 
@@ -65,11 +66,10 @@ class SignInSignOut extends React.Component {
   }
   render() {
     return (
-      <div className="signin-signout body-class form-container">
-        <h1>Already Have An Account</h1>
+      <div className="body-class form-container">
+       
         <div>
-          <span>Sign In with your Email and Password</span>
-          <button onClick={this.SignInWithGoogle}>Google Sign In</button>
+          <h2>LOGIN <span>here</span></h2>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="email">Email</label>
             <input
@@ -92,10 +92,13 @@ class SignInSignOut extends React.Component {
             />
 
             <div className="buttons-class">
-              <button type="submit">Sign In</button>
+              <button className="btn btn-primary" type="submit">Sign In</button>
             </div>
           </form>
         </div>
+        <button className="btn btn-danger" onClick={this.SignInWithGoogle}>Google Sign In</button>
+        <span>Dont have account?   <Link to="/sign-up" class="link"> signup here</Link></span>
+
       </div>
     );
   }

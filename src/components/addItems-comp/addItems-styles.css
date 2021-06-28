@@ -1,18 +1,5 @@
-/* .additems{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-} */
-
-/* .additems-top{
-    margin-top: 100vh;
-} */
-
 .additems-top{
-    background: #f6f5f7;
+  background: #f6f5f7;
 	display: flex;
 	justify-content: center;
 	align-items: center;

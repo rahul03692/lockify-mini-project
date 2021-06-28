@@ -45,29 +45,29 @@ class AddItems extends React.Component {
     return (
       <div className="additems-top">
         <div className="additems">
-          <h1>Add Lock Configuration</h1>
+          <h2>Add Lock Configuration</h2>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="email">Name</label>
             <input
               type="text"
               name="name"
               id="name"
-              //placeholder="email"
+              placeholder="Enter lock name"
               onChange={this.handleChange}
               value={this.state.name}
             />
 
-            <label htmlFor="isLocked">isLocked</label>
-            <input
+            <label htmlFor="isLocked">isLocked <input
               type="checkbox"
               name="isLocked"
               id="isLocked"
               value={this.state.isLocked}
               onChange={this.handle}
             />
-
+            </label>
+            
             <div className="buttons-class">
-              <button type="submit">Add Item</button>
+              <button className="btn btn-primary" type="submit">Add Item</button>
             </div>
           </form>
         </div>

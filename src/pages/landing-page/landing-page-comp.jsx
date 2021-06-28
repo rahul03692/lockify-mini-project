@@ -17,26 +17,31 @@ const LandingPage = ()=>{
             <div className="landing-page">
            
             <div className="main-center">
-                <h1>Lockify</h1>
+                    <div className="card">
+                        <h1>LOCKIFY</h1>
+                     </div>
                 <div className="link-class">
                     {
-                        userData?
-                        <div class="signin-signup">
-                            <div className="sign-in">
-                                <Link to="/home" class="link"> Sign In</Link>
-                            </div>
-                            <div className="sign-up">
-                                <Link to="/sign-up" class="link"> Sign Up</Link>
-                            </div>
-                        </div>
-                        :<div class="signin-signup">
-                            <div className="sign-in">
-                                <Link to="/sign-in" class="link"> Sign In</Link>
-                            </div>
-                            <div className="sign-up">
-                                <Link to="/sign-up" class="link"> Sign Up</Link>
-                            </div>
-                        </div>
+                            userData ?
+                                
+                                <div class="jumbotron">
+                                    <h1 className="display-4">WELCOME TO</h1>
+                                    <p className="lead para">Secure and Smart Locking System.</p>
+                                    <hr class="my-4" />
+                                    <p className="para">Easy to handle, Secure Application,Robust performance</p>
+                                    <Link to="/home" className="link"> <button className="btn btn-warning  btn-lg">SIGNIN</button></Link>
+                                    <Link to="/sign-up" className="link"> <button className="btn btn-warning  btn-lg">SIGNUP</button></Link>
+                                </div>
+                                :
+                                <div class="jumbotron">
+                                    <h1 className="display-4">WELCOME TO</h1>
+                                    <p className="lead para">Secure and Smart Locking System.</p>
+                                    <hr class="my-4"/>
+                                        <p className="para">Easy to handle, Secure Application,Robust performance</p>
+                                    <Link to="/sign-in" className="link"> <button className="btn btn-warning  btn-lg">SIGNIN</button></Link>
+                                    <Link to="/sign-up" className="link"> <button className="btn btn-warning  btn-lg">SIGNUP</button></Link>
+                                </div>
+                            
                     }
 
                 </div>
