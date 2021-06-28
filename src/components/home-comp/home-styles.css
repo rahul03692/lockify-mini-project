@@ -1,5 +1,20 @@
-.logged-in-email{
-    color: blueviolet;
-    font-size:small;
-    font-style: italic;
+
+.heading{
+    align-items: center;
+    text-align: center;
+    background-color:dodgerblue;
+    margin-bottom: 30px;
+    color: white;
+    
+}
+.heading h1{
+    font-style:normal;
+}
+@media screen and (max-width: 500px) {
+  .home-page {
+    flex-direction: column;
+    max-width: 500px;
+    height: auto;
+    margin-top: 10px;
+  } 
 }
