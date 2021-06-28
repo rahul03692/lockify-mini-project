@@ -1,7 +1,8 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import lock from './lock.jpg';
+
+//import lock from './lock.jpg';
 
 import './landing-page-styles.css';
 
