@@ -42,12 +42,12 @@ class LockUnlock extends React.Component {
       <div className="lock-unlock">
         <h1>{name}</h1>
         {isLocked ? (
-          <div className="img-div">
+          <div className="img-div locked">
             <img src={lock} alt="lock" onClick={this.handleClick} className="img" />
             {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
           </div>
         ) : (
-          <div className="img-div">
+          <div className="img-div unlocked">
             <img src={unlock} alt="unlock" onClick={this.handleClick} className="img" />
             {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
           </div>

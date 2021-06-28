@@ -1,7 +1,10 @@
 import React from "react";
-import { Redirect } from "react-router";
+
+//import { Redirect } from "react-router";
 
 import { auth, db } from "../../firebase/firebase";
+
+import { withRouter } from "react-router-dom";
 
 import Lists from "../lock-lists/lock-lists-comp";
 import './home-styles.css';
@@ -20,8 +23,10 @@ class Home extends React.Component {
   }
 
   LogOut = () => {
+    
     auth.signOut().then(()=>{
-      <Redirect to="/" />
+      localStorage.clear();
+      this.props.history.push("/");
     }).catch(err=>{
       console.log(err.message);
     });
@@ -65,4 +70,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

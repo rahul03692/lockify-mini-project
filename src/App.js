@@ -9,7 +9,7 @@ import SignUp from "./pages/signup/signup-comp";
 import LockUnlock from "./pages/lock-unlock-page/lock-unlock-page-comp";
 
 function App() {
-  
+
   return (
     <div>
       <Switch>

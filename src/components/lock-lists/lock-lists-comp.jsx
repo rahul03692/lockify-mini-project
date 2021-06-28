@@ -8,21 +8,29 @@ import { useHistory } from "react-router-dom";
 
 const Lists = (props) => {
   const history = useHistory();
-  const handleClick = () =>{
+  const handleClick = () => {
     history.push({
-      pathname:'/locks',
-      state:{
-        name:props.name,
-        isLocked:props.isLocked,
-        uid:props.uid
-      }
+      pathname: "/locks",
+      state: {
+        name: props.name,
+        isLocked: props.isLocked,
+        uid: props.uid,
+      },
     });
-  }
+  };
 
   return (
-    <div className="list-tiles" onClick={handleClick} >
-      <h1>{props.name}</h1>
-      <span>{props.isLocked ? "Locked" : "Not Locked"}</span>
+    <div className="list-tiles" onClick={handleClick}>
+      <ul className="list-group">
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+          <h2>{props.name}</h2>
+          {props.isLocked ? (
+            <span className="badge bg-primary rounded-pill">Locked</span>
+          ) : (
+            <span className="badge bg-danger rounded-pill">Not Locked</span>
+          )}
+        </li>
+      </ul>
     </div>
   );
 };
