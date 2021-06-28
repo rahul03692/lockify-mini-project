@@ -1,0 +1,35 @@
+
+.lock-unlock{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.img{
+    height: 100px;
+    width: 100px;
+}
+
+.img-div{
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+.locked{
+    background-color: red;
+    border-radius: 20px;
+}
+
+.unlocked{
+    border-radius: 20px;
+    background-color: green;
+}
