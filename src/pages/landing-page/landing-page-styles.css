@@ -11,18 +11,22 @@ h1{
     color:white;
     text-transform: capitalize;
     background-color: dodgerblue;
+    border-radius: 10px;
 }
 .card{
     margin: 40px;
     background-color:dodgerblue;
+    border-radius: 10px;
 }
 .para{
     color: white;
     font-size: 20px;
     background-color: tomato;
+    padding: 10px;
+    
 }
 .bg {
-  background-image: url('https://wallpaperaccess.com/full/1673364.png');
+  background-image: url('https://t3.ftcdn.net/jpg/02/34/17/22/360_F_234172218_7e3c1iBNjnwkxQCgImHVjD4m5PSTTB7R.jpg');
   background-color: #f6f5f7;
   height: 100%; 
   background-position: center;

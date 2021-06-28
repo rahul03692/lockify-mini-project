@@ -57,7 +57,10 @@ class Home extends React.Component {
       <div >
 
         <nav class="navbar navbar-light bg-light">
-          <a class="navbar-brand">LOCKIFY</a>
+          <div style={{marginLeft:10 +'px'}}>
+            <a class="navbar-brand">  LOCKIFY</a>
+         </div>
+         
             <button className="btn btn-warning" onClick={this.LogOut}>LogOut</button>
         </nav>
         
