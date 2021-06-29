@@ -10,23 +10,28 @@ body, html {
 h1{
     color:white;
     text-transform: capitalize;
-    background-color: dodgerblue;
+    /* background-color: dodgerblue; */
     border-radius: 10px;
 }
-.card{
+.bard{
+    font-size: 350px;
+    font-weight: bolder;
+    color: rgba(255, 255, 255, 0.4);
     margin: 40px;
-    background-color:dodgerblue;
+    /* background-color:dodgerblue; */
     border-radius: 10px;
+    padding-bottom:40px ;
 }
 .para{
     color: white;
     font-size: 20px;
-    background-color: tomato;
-    padding: 10px;
+    /* background-color: tomato; */
+    /* padding: 12px;
+    margin: 12px; */
     
 }
 .bg {
-  background-image: url('https://t3.ftcdn.net/jpg/02/34/17/22/360_F_234172218_7e3c1iBNjnwkxQCgImHVjD4m5PSTTB7R.jpg');
+  background-image: url('https://cdn.dribbble.com/users/736038/screenshots/2544871/untitled-1.gif');
   background-color: #f6f5f7;
   height: 100%; 
   background-position: center;
@@ -67,9 +72,12 @@ img.lock-img {
 }
 
 @media screen and (max-width: 800px) {
-    img.lock-img{
-        width: 150px;
-        height: 150px;
-        border: 40%;
+    
+
+    .bard{
+        font-size: 50px;
+        margin-bottom: 250px;
+        padding-bottom:80px ;
     }
+    
 }
