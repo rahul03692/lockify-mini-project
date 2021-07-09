@@ -89,7 +89,7 @@ class SignUp extends React.Component {
 
         </div>
         <span>Already have account?  <Link to="/sign-in" class="link"> Login here</Link></span>
-
+        
       </div>
     );
   }

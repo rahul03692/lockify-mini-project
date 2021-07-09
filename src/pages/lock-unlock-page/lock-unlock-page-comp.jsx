@@ -40,7 +40,7 @@ class LockUnlock extends React.Component {
     const {name,isLocked}=this.state;
     return (
       <div className="lock-unlock">
-        <h1>{name}</h1>
+        <h1 style={{color:"black"}}>{name}</h1>
         {isLocked ? (
           <div className="img-div locked">
             <img src={lock} alt="lock" onClick={this.handleClick} className="img" />
