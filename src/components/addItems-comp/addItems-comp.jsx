@@ -54,6 +54,7 @@ class AddItems extends React.Component {
               id="name"
               placeholder="Enter lock name"
               onChange={this.handleChange}
+              required
               value={this.state.name}
             />
 
