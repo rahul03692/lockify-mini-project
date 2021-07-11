@@ -30,6 +30,7 @@ const LoginWithOtp = (props) => {
   };
 
   const onSignInSubmit = (e) => {
+
     setShowSpinner(true);
     e.preventDefault();
     
@@ -139,7 +140,13 @@ const LoginWithOtp = (props) => {
               value={otp}
               onChange={handleChange}
             />
-            <button className="btn btn-primary" type="submit">Submit</button>
+            {showSpinner ?
+              <div class="spinner-border text-warning" role="status">
+                {/* <span class="sr-only">Loading...</span> */}
+              </div>
+              :
+              <button className="btn btn-primary" type="submit">Submit</button>
+            }
           </form>
           
       }      

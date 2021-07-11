@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { auth, db } from "../../firebase/firebase";
 
 class SignUp extends React.Component {
+  
   constructor() {
     super();
 
@@ -15,6 +16,8 @@ class SignUp extends React.Component {
       phoneno: "",
     };
   }
+
+  
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -99,12 +102,18 @@ class SignUp extends React.Component {
               onChange={this.handleChange}
               value={this.state.phoneno}
             />
-
-            <div className="buttons-class">
-              <button className="btn btn-primary" type="submit">
-                Sign Up
-              </button>
-            </div>
+            {showSpinner ?
+              <div class="spinner-border text-warning" role="status">
+                {/* <span class="sr-only">Loading...</span> */}
+              </div>
+              :
+              <div className="buttons-class">
+                <button className="btn btn-primary" type="submit">
+                  Sign Up
+                </button>
+              </div>
+            }
+            
           </form>
         </div>
         <span>
