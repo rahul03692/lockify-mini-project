@@ -1,0 +1,6 @@
+@media all and (max-width :340px) {
+    body{
+        width:340px;
+        height:100%;
+    }
+}

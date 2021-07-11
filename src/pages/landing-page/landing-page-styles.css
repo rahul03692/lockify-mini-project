@@ -1,6 +1,6 @@
 
 .bg-color{
-    background-color: #f6f5f7;
+    background-color: #fe5e50;
     height: 100vh;
 }
 body, html {
@@ -29,10 +29,11 @@ h1{
     /* padding: 12px;
     margin: 12px; */
     
+    
 }
 .bg {
   background-image: url('https://cdn.dribbble.com/users/736038/screenshots/2544871/untitled-1.gif');
-  background-color: #f6f5f7;
+  background-color: #fe5e50;
   height: 100%; 
   background-position: center;
   background-repeat: no-repeat;
@@ -71,7 +72,7 @@ img.lock-img {
     text-decoration: none;
 }
 
-@media screen and (max-width: 800px) {
+@media all and (max-width: 800px) {
     
 
     .bard{
