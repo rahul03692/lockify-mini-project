@@ -8,8 +8,6 @@ import { useHistory } from "react-router-dom";
 
 const Lists = (props) => {
   
-  
-  
   console.log(props.isLocked)
   const history = useHistory();
   const handleClick = () => {
@@ -28,7 +26,7 @@ const Lists = (props) => {
       <ul className="list-group">
         <li className="list-group-item d-flex justify-content-between align-items-center">
           <h4>{props.name}</h4>
-          {props.isLocked ==="true" ? (
+          {props.isLocked === true ? (
             <span className="badge bg-primary rounded-pill">Locked</span>
           ) : (
             <span className="badge bg-danger rounded-pill">Open</span>
