@@ -4,7 +4,8 @@ import "firebase/auth";
 import { withRouter } from "react-router";
 
 const LoginWithOtp = (props) => {
-  const [phoneno, setPhoneNumber] = useState("");
+  console.log(props.location.state.phoneno);
+  const [phoneno, setPhoneNumber] = useState(props.location.state.phoneno);
   const [otp, setOtp] = useState("");
 
   const handleChange = (e) => {
@@ -35,10 +36,8 @@ const LoginWithOtp = (props) => {
     e.preventDefault();
     
     const phoneNumber = "+91" + phoneno;
-    console.log(phoneNumber);
-
     configureRecaptcha();
-    console.log("hey");
+  
     const appVerifier = window.recaptchaVerifier;
     firebase
       .auth()
@@ -48,8 +47,6 @@ const LoginWithOtp = (props) => {
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
         console.log("OTP has sent");
-        e.target.value="";
-        setPhoneNumber("");
         // ...
       })
       .catch((error) => {
@@ -67,30 +64,32 @@ const LoginWithOtp = (props) => {
       .confirm(code)
       .then((result) => {
         // User signed in successfully.
-        const user = result.user;
-        console.log(user);
+        //const user = result.user;
         setOtp("");
+        setPhoneNumber("");
         e.target.value="";
-
-        props.history.push("/");
+        
+        props.history.push("/home");
         // ...
       })
       .catch((error) => {
-        // User couldn't sign in (bad verification code?)
-        // ...
+        alert("INVALID OTP");
+
+        setOtp("");
         console.log(error.message);
       });
   };
 
   return (
     <div>
+      <h2>Two Factor Authentication</h2>
       <form onSubmit={onSignInSubmit}>
-        <input
+        <input disabled
           type="number"
           name="phoneno"
           placeholder="Enter Mobile number"
+          value={phoneno}
           required
-          onChange={handleChange}
         />
         <button type="submit">Submit</button>
       </form>
@@ -102,6 +101,7 @@ const LoginWithOtp = (props) => {
           name="otp"
           placeholder="Enter Otp"
           required
+          value={otp}
           onChange={handleChange}
         />
         <button type="submit">Submit</button>

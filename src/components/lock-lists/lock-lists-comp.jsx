@@ -7,6 +7,10 @@ import { useHistory } from "react-router-dom";
 //import { Switch,Route } from "react-router";
 
 const Lists = (props) => {
+  var val=0;
+  if(props.isLocked) val=1;
+  else val=0;
+
   const history = useHistory();
   const handleClick = () => {
     history.push({
@@ -24,7 +28,7 @@ const Lists = (props) => {
       <ul className="list-group">
         <li className="list-group-item d-flex justify-content-between align-items-center">
           <h4>{props.name}</h4>
-          {props.isLocked ? (
+          {val ? (
             <span className="badge bg-primary rounded-pill">Locked</span>
           ) : (
             <span className="badge bg-danger rounded-pill">Open</span>

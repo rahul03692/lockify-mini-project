@@ -3,7 +3,7 @@ import React from "react";
 import "./signup-styles.css";
 import { Link } from "react-router-dom";
 
-import { auth ,db} from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 
 class SignUp extends React.Component {
   constructor() {
@@ -12,6 +12,7 @@ class SignUp extends React.Component {
     this.state = {
       email: "",
       password: "",
+      phoneno: "",
     };
   }
 
@@ -23,7 +24,7 @@ class SignUp extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { email, password } = this.state;
+    const { email, password, phoneno} = this.state;
 
     auth
       .createUserWithEmailAndPassword(email, password)
@@ -33,32 +34,38 @@ class SignUp extends React.Component {
           uid: resp.user.uid,
         };
 
-        this.setState({ email: "", password: "" });
+        this.setState({ email: "", password: "" ,phoneno: ""});
         localStorage.setItem("userData", JSON.stringify(user));
 
-
         //creating user with uid
-        const locksRef=db.doc(`users/${user.uid}`);
-        locksRef.get().then((ss)=>{
+        const locksRef = db.doc(`users/${user.uid}`);
+        locksRef.get().then((ss) => {
           locksRef.collection("locks");
-          this.props.history.push("/home");
-        });
-      
 
+          locksRef.set({
+            phoneno: phoneno,
+          }).then(()=>this.props.history.push({
+            pathname:"/loginotp",
+            state:{
+              phoneno:phoneno,
+            },
+          }));
+                    
+        });
       })
       .catch((err) => {
         alert(err.message);
         console.log(err.message);
       });
-
   };
 
   render() {
     return (
       <div className="body-class">
-        
         <div>
-          <h2>SIGNUP <span>here</span></h2>
+          <h2>
+            SIGNUP <span>here</span>
+          </h2>
 
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="email">Email</label>
@@ -81,15 +88,30 @@ class SignUp extends React.Component {
               value={this.state.password}
             />
 
+            <label htmlFor="phoneno">PhoneNo</label>
+            <input
+              type="text"
+              name="phoneno"
+              id="phonno"
+              //placeholder="password"
+              onChange={this.handleChange}
+              value={this.state.phoneno}
+            />
+
             <div className="buttons-class">
-              <button className="btn btn-primary" type="submit">Sign Up</button>
+              <button className="btn btn-primary" type="submit">
+                Sign Up
+              </button>
             </div>
-
           </form>
-
         </div>
-        <span>Already have account?  <Link to="/sign-in" class="link"> Login here</Link></span>
-        
+        <span>
+          Already have account?{" "}
+          <Link to="/sign-in" class="link">
+            {" "}
+            Login here
+          </Link>
+        </span>
       </div>
     );
   }

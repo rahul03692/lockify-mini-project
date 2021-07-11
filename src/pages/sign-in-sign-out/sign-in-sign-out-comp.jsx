@@ -1,6 +1,6 @@
 import React from "react";
 
-import { auth ,Provider} from "../../firebase/firebase";
+import { db,auth ,Provider} from "../../firebase/firebase";
 import { Link } from "react-router-dom";
 
 import "./sign-in-sign-out-styles.css";
@@ -39,10 +39,19 @@ class SignInSignOut extends React.Component {
 
 
         this.setState({ email: "", password: "" });
-        //setUser(true);
         localStorage.setItem("userData", JSON.stringify(user));
-        console.log(localStorage.getItem("userData"));
-        this.props.history.push("/home");
+        //console.log(localStorage.getItem("userData"));
+
+        db.doc(`users/${user.uid}`).get().then((res)=>{
+          
+          this.props.history.push({
+            pathname:"/loginotp",
+            state:{
+              phoneno:res.data().phoneno,
+            },
+          });
+        }).catch(err=>console.log(err.message));
+        
       })
       .catch((err) => {
         alert(err.message);
