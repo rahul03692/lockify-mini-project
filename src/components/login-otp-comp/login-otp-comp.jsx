@@ -52,7 +52,6 @@ const LoginWithOtp = (props) => {
       .catch((error) => {
         // Error; SMS not sent
         // ...
-        console.log("error its me");
         console.log(error.message);
       });
   };
