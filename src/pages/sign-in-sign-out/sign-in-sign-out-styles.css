@@ -5,6 +5,15 @@
 	box-sizing: border-box;
 }
 
+.google-img{
+	height: 30px;
+	width: 30px;
+}
+
+.google-div{
+	margin: 10px;
+	padding: 10px;
+}
 
 .body-class {
 	background: #f6f5f7;

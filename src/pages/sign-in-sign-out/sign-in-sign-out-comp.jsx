@@ -2,7 +2,7 @@ import React from "react";
 
 import { db, auth, Provider } from "../../firebase/firebase";
 import { Link } from "react-router-dom";
-
+import googleimg from "./google-img.png";
 import "./sign-in-sign-out-styles.css";
 
 class SignInSignOut extends React.Component {
@@ -117,9 +117,9 @@ class SignInSignOut extends React.Component {
               </div>
             </form>
           </div>
-          <button className="btn btn-danger" onClick={this.SignInWithGoogle}>
-            Google Sign In
-          </button>
+          <div className="google-div btn btn-outline-info">
+            <img src={googleimg} alt="google-img" onClick={this.SignInWithGoogle} className="google-img" />
+          </div>
           <span>
             Dont have account?{" "}
             <Link to="/sign-up" class="link">
