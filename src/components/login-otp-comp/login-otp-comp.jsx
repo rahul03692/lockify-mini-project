@@ -63,6 +63,7 @@ const LoginWithOtp = (props) => {
   };
 
   const otpSubmit = (e) => {
+    setShowSpinner(true);
       e.preventDefault();
     const code = otp;
     window.confirmationResult
@@ -81,6 +82,7 @@ const LoginWithOtp = (props) => {
           localStorage.setItem('userData',JSON.stringify(userData));
         setOtp("");
         setPhoneNumber("");
+        setShowSpinner(false);
         props.history.push("/home");
         // ...
       })
