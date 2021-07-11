@@ -35,7 +35,7 @@ class SignUp extends React.Component {
         };
 
         this.setState({ email: "", password: "" ,phoneno: ""});
-        localStorage.setItem("userData", JSON.stringify(user));
+        // localStorage.setItem("userData", JSON.stringify(user));
 
         //creating user with uid
         const locksRef = db.doc(`users/${user.uid}`);
@@ -47,7 +47,9 @@ class SignUp extends React.Component {
           }).then(()=>this.props.history.push({
             pathname:"/loginotp",
             state:{
-              phoneno:phoneno,
+              phoneno: phoneno,
+              email: resp.user.email,
+              uid: resp.user.uid,
             },
           }));
                     

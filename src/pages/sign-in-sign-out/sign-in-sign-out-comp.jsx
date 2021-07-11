@@ -39,7 +39,7 @@ class SignInSignOut extends React.Component {
 
 
         this.setState({ email: "", password: "" });
-        localStorage.setItem("userData", JSON.stringify(user));
+        // localStorage.setItem("userData", JSON.stringify(user));
         //console.log(localStorage.getItem("userData"));
 
         db.doc(`users/${user.uid}`).get().then((res)=>{
@@ -47,7 +47,9 @@ class SignInSignOut extends React.Component {
           this.props.history.push({
             pathname:"/loginotp",
             state:{
-              phoneno:res.data().phoneno,
+              phoneno: res.data().phoneno,
+              email: user.email,
+              uid:user.uid,
             },
           });
         }).catch(err=>console.log(err.message));
@@ -64,8 +66,11 @@ class SignInSignOut extends React.Component {
     auth.signInWithPopup(Provider).then((result)=>{
       const user = {
         email:result.user.email,
-        uid:result.user.uid
+        uid: result.user.uid,
+        validOtp: true,
+        phoneno: null,
       };
+      
       localStorage.setItem("userData",JSON.stringify(user));
       this.props.history.push("/home");
     }).catch(err=>{
