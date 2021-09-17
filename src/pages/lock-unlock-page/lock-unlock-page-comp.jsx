@@ -3,7 +3,7 @@ import { db } from "../../firebase/firebase";
 
 import lock from "./lock-big.png";
 import unlock from "./unlock-big.png";
-
+import CircularProgress from "@mui/material/CircularProgress";
 import "./lock-unlock-page-styles.css";
 
 class LockUnlock extends React.Component {
@@ -13,17 +13,19 @@ class LockUnlock extends React.Component {
     super();
 
     this.state = {
-        name:"",
-        isLocked: "",
+      name: "",
+      isLocked: "",
+      state: "idle",
     };
   }
 
-  componentDidMount(){
-      const {name,isLocked}=this.props.location.state;
-      this.setState({name:name,isLocked:isLocked});
+  componentDidMount() {
+    const { name, isLocked } = this.props.location.state;
+    this.setState({ name: name, isLocked: isLocked });
   }
 
   handleClick = () => {
+    this.setState({ state: "inProgress" });
     const userUid = JSON.parse(localStorage.getItem("userData")).uid;
     db.collection(`users/${userUid}/locks`)
       .doc(this.props.location.state.uid)
@@ -32,27 +34,47 @@ class LockUnlock extends React.Component {
       })
       .then(() => {
         this.setState({ isLocked: !this.state.isLocked });
+        this.setState({ state: "idle" });
       })
       .catch((err) => console.log(err.message));
   };
 
   render() {
-    const {name,isLocked}=this.state;
+    const { name, isLocked } = this.state;
     return (
-      <div className="lock-unlock">
-        <h1 style={{color:"black"}}>{name}</h1>
-        {isLocked ? (
-          <div className="img-div locked">
-            <img src={lock} alt="lock" onClick={this.handleClick} className="img" />
-            {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
+      <>
+        <nav class="navbar navbar-light bg-light">
+          <div style={{ marginLeft: 10 + "px" }}>
+            <a href="/home" class="navbar-brand">
+              LOCKIFY
+            </a>
           </div>
-        ) : (
-          <div className="img-div unlocked">
-            <img src={unlock} alt="unlock" onClick={this.handleClick} className="img" />
-            {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
-          </div>
-        )}
-      </div>
+          <button className="btn btn-warning" onClick={this.LogOut}>
+            LogOut
+          </button>
+        </nav>
+        <div className="lock-unlock">
+          <h1 style={{ color: "black" }}>{name}</h1>
+          <h5>Click to {isLocked ? "Unlock" : "Lock"}</h5>
+          {this.state.state == "idle" ? (
+            <>
+              {isLocked ? (
+                <div className="img-div locked" onClick={this.handleClick}>
+                  <img src={lock} alt="lock" className="img" />
+                  {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
+                </div>
+              ) : (
+                <div className="img-div unlocked" onClick={this.handleClick}>
+                  <img src={unlock} alt="unlock" className="img" />
+                  {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
+                </div>
+              )}
+            </>
+          ) : (
+            <CircularProgress />
+          )}
+        </div>
+      </>
     );
   }
 }
