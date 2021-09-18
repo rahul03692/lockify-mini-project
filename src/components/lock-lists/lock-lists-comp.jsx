@@ -7,8 +7,7 @@ import { useHistory } from "react-router-dom";
 //import { Switch,Route } from "react-router";
 
 const Lists = (props) => {
-  
-  console.log(props.isLocked)
+  console.log(props.isLocked);
   const history = useHistory();
   const handleClick = () => {
     history.push({

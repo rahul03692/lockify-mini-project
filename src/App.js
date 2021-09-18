@@ -9,7 +9,6 @@ import LandingPage from "./pages/landing-page/landing-page-comp";
 import LoginWithOtp from "./components/login-otp-comp/login-otp-comp";
 
 function App() {
-
   return (
     <div>
       <Switch>
@@ -18,7 +17,7 @@ function App() {
         <Route exact path="/sign-up" component={SignUp} />
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/locks" component={LockUnlock} />
-        <Route exact path="/loginotp" component={LoginWithOtp}/>
+        <Route exact path="/loginotp" component={LoginWithOtp} />
       </Switch>
     </div>
   );
