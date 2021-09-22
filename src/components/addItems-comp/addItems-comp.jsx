@@ -1,6 +1,7 @@
 import React from "react";
 
-import { db } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
+
 import "./addItems-styles.css";
 
 class AddItems extends React.Component {
@@ -10,6 +11,7 @@ class AddItems extends React.Component {
     this.state = {
       name: "",
       isLocked: false,
+      lockCode: "",
     };
   }
 
@@ -30,11 +32,10 @@ class AddItems extends React.Component {
       .add({
         name: event.target.name.value,
         isLocked: true,
+        lockCode: event.target.lockCode.value,
       })
       .then(() => {
-        console.log("successful");
-        this.setState({ name: "", isLocked: false });
-        event.target.isLocked.checked = false;
+        this.setState({ name: "", isLocked: false, lockCode: "" });
       })
       .catch((err) => {
         console.log(err.message);
@@ -57,7 +58,15 @@ class AddItems extends React.Component {
               required
               value={this.state.name}
             />
-
+            <label htmlFor="id">Lock Code</label>
+            <input
+              type="text"
+              name="lockCode"
+              id="lockCode"
+              placeholder="lock code "
+              onChange={this.handleChange}
+              value={this.state.lockCode}
+            />
             {/* <label htmlFor="isLocked">isLocked<input
               type="checkbox"
               name="isLocked"

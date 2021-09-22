@@ -15,11 +15,8 @@ class SignInSignOut extends React.Component {
     };
   }
 
-  // const {setUser}=this.props;
-
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     this.setState({ [name]: value });
   };
 
@@ -30,28 +27,16 @@ class SignInSignOut extends React.Component {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((resp) => {
-        const user = {
-          email: resp.user.email,
-          uid: resp.user.uid,
-        };
+        if (resp.user) {
+          const user = {
+            email: resp.user.email,
+            uid: resp.user.uid,
+          };
 
-        this.setState({ email: "", password: "" });
-        // localStorage.setItem("userData", JSON.stringify(user));
-        //console.log(localStorage.getItem("userData"));
-
-        db.doc(`users/${user.uid}`)
-          .get()
-          .then((res) => {
-            this.props.history.push({
-              pathname: "/loginotp",
-              state: {
-                phoneno: res.data().phoneno,
-                email: user.email,
-                uid: user.uid,
-              },
-            });
-          })
-          .catch((err) => console.log(err.message));
+          this.setState({ email: "", password: "" });
+          localStorage.setItem("userData", JSON.stringify(user));
+          this.props.history.push("/home");
+        }
       })
       .catch((err) => {
         alert(err.message);
@@ -67,8 +52,6 @@ class SignInSignOut extends React.Component {
         const user = {
           email: result.user.email,
           uid: result.user.uid,
-          validOtp: true,
-          phoneno: null,
         };
 
         localStorage.setItem("userData", JSON.stringify(user));
@@ -78,6 +61,7 @@ class SignInSignOut extends React.Component {
         console.log(err.message);
       });
   };
+
   render() {
     const userData = localStorage.getItem("userData");
     if (userData) {
@@ -118,12 +102,16 @@ class SignInSignOut extends React.Component {
             </form>
           </div>
           <div className="google-div btn btn-outline-info">
-            <img src={googleimg} alt="google-img" onClick={this.SignInWithGoogle} className="google-img" />
+            <img
+              src={googleimg}
+              alt="google-img"
+              onClick={this.SignInWithGoogle}
+              className="google-img"
+            />
           </div>
           <span>
-            Dont have account?{" "}
+            Dont have account?
             <Link to="/sign-up" class="link">
-              {" "}
               signup here
             </Link>
           </span>
@@ -132,9 +120,5 @@ class SignInSignOut extends React.Component {
     }
   }
 }
-
-// const mapDispatchToProps=(dispatch)=>({
-//   setUser:item => dispatch(setCurrentUser(item)),
-// });
 
 export default SignInSignOut;

@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 
 import lock from "./lock-big.png";
 import unlock from "./unlock-big.png";
@@ -19,6 +19,17 @@ class LockUnlock extends React.Component {
     };
   }
 
+  LogOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        localStorage.clear();
+        this.props.history.push("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   componentDidMount() {
     const { name, isLocked } = this.props.location.state;
     this.setState({ name: name, isLocked: isLocked });
