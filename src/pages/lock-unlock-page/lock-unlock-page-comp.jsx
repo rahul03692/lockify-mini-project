@@ -1,10 +1,11 @@
 import React from "react";
-import { auth, db } from "../../firebase/firebase";
+import { auth, db } from "../../services/firebase";
 
 import lock from "./lock-big.png";
 import unlock from "./unlock-big.png";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./lock-unlock-page-styles.css";
+import { LockService } from "../../services/lockService";
 
 class LockUnlock extends React.Component {
   // console.log(name,isLocked);
@@ -38,6 +39,12 @@ class LockUnlock extends React.Component {
   handleClick = () => {
     this.setState({ state: "inProgress" });
     const userUid = JSON.parse(localStorage.getItem("userData")).uid;
+    if (this.state.isLocked) {
+      LockService.getInstance().openLock();
+    } else {
+      LockService.getInstance().closeLock();
+    }
+
     db.collection(`users/${userUid}/locks`)
       .doc(this.props.location.state.uid)
       .update({

@@ -3,7 +3,7 @@ import React from "react";
 import "./signup-styles.css";
 import { Link } from "react-router-dom";
 
-import { auth, db } from "../../firebase/firebase";
+import { auth, db } from "../../services/firebase";
 
 class SignUp extends React.Component {
   constructor() {

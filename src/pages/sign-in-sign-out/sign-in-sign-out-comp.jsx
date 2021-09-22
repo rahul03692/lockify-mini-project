@@ -1,6 +1,6 @@
 import React from "react";
 
-import { db, auth, Provider } from "../../firebase/firebase";
+import { db, auth, Provider } from "../../services/firebase";
 import { Link } from "react-router-dom";
 import googleimg from "./google-img.png";
 import "./sign-in-sign-out-styles.css";

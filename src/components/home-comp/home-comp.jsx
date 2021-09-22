@@ -2,18 +2,18 @@ import React from "react";
 
 //import { Redirect } from "react-router";
 
-import { auth, db } from "../../firebase/firebase";
+import { auth, db } from "../../services/firebase";
 
 import { withRouter } from "react-router-dom";
 
 import Lists from "../lock-lists/lock-lists-comp";
 import "./home-styles.css";
 import { CircularProgress } from "@mui/material";
+import { LockService } from "../../services/lockService";
 
 class Home extends React.Component {
   constructor() {
     super();
-
     this.state = {
       data: [],
       loaded: false,
@@ -38,15 +38,12 @@ class Home extends React.Component {
 
   getData = async () => {
     const array = [];
-
     const userUid = JSON.parse(localStorage.getItem("userData")).uid;
-
     db.collection(`users/${userUid}/locks`).onSnapshot((snapshot) => {
       let changes = snapshot.docChanges();
       changes.forEach((change) => {
         array.push({ data: change.doc.data(), uid: change.doc.id });
       });
-
       this.setState({ data: array, loaded: true });
     });
   };
