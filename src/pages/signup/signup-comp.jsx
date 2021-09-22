@@ -35,27 +35,10 @@ class SignUp extends React.Component {
         };
 
         this.setState({ email: "", password: "", phoneno: "" });
-        // localStorage.setItem("userData", JSON.stringify(user));
-
-        //creating user with uid
-        const locksRef = db.doc(`users/${user.uid}`);
-        locksRef.get().then((ss) => {
-          locksRef.collection("locks");
-
-          locksRef
-            .set({
-              phoneno: phoneno,
-            })
-            .then(() =>
-              this.props.history.push({
-                pathname: "/loginotp",
-                state: {
-                  phoneno: phoneno,
-                  email: resp.user.email,
-                  uid: resp.user.uid,
-                },
-              })
-            );
+        const userRef = db.doc(`users/${user.uid}`);
+        userRef.set(user).then(() => {
+          localStorage.setItem("userData", JSON.stringify(user));
+          this.props.history.push("/home");
         });
       })
       .catch((err) => {
@@ -97,7 +80,7 @@ class SignUp extends React.Component {
                 value={this.state.password}
               />
 
-              <label htmlFor="phoneno">PhoneNo</label>
+              <label htmlFor="phoneno">Phone Number</label>
               <input
                 type="text"
                 name="phoneno"
@@ -115,9 +98,8 @@ class SignUp extends React.Component {
             </form>
           </div>
           <span>
-            Already have account?{" "}
+            Already have account?
             <Link to="/sign-in" class="link">
-              {" "}
               Login here
             </Link>
           </span>
