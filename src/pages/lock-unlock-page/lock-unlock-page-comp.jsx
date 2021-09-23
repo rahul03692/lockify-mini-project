@@ -8,15 +8,45 @@ import "./lock-unlock-page-styles.css";
 import { LockService } from "../../services/lockService";
 
 class LockUnlock extends React.Component {
-  // console.log(name,isLocked);
+  socketUrl = "wss://door-unlock-test.herokuapp.com";
+  ws = {};
+  userUid;
+
+  // states :
+  // not connected : socket is establishing
+  // connected
 
   constructor() {
     super();
-
+    this.userUid = JSON.parse(localStorage.getItem("userData")).uid;
     this.state = {
       name: "",
       isLocked: "",
-      state: "idle",
+      state: "notConnected",
+    };
+
+    var ws = new WebSocket("wss://door-unlock-test.herokuapp.com");
+    ws.onopen = () => {
+      this.setState({ state: "connected" });
+      this.ws = ws;
+    };
+
+    ws.onmessage = (msg) => {
+      var message = JSON.parse(msg.data);
+      var status = message.lockStatus;
+      db.collection(`users/${this.userUid}/locks`)
+        .doc(this.props.location.state.uid)
+        .update({
+          isLocked: status !== "open",
+        })
+        .then(() => {
+          this.setState({ state: "connected", isLocked: status !== "open" });
+        })
+        .catch((err) => console.log(err.message));
+    };
+
+    ws.onclose = () => {
+      this.setState({ state: "notConnected" });
     };
   }
 
@@ -31,6 +61,7 @@ class LockUnlock extends React.Component {
         console.log(err.message);
       });
   };
+
   componentDidMount() {
     const { name, isLocked } = this.props.location.state;
     this.setState({ name: name, isLocked: isLocked });
@@ -38,23 +69,11 @@ class LockUnlock extends React.Component {
 
   handleClick = () => {
     this.setState({ state: "inProgress" });
-    const userUid = JSON.parse(localStorage.getItem("userData")).uid;
     if (this.state.isLocked) {
-      LockService.getInstance().openLock();
+      this.ws.send(JSON.stringify({ command: "open" }));
     } else {
-      LockService.getInstance().closeLock();
+      this.ws.send(JSON.stringify({ command: "close" }));
     }
-
-    db.collection(`users/${userUid}/locks`)
-      .doc(this.props.location.state.uid)
-      .update({
-        isLocked: !this.state.isLocked,
-      })
-      .then(() => {
-        this.setState({ isLocked: !this.state.isLocked });
-        this.setState({ state: "idle" });
-      })
-      .catch((err) => console.log(err.message));
   };
 
   render() {
@@ -74,7 +93,7 @@ class LockUnlock extends React.Component {
         <div className="lock-unlock">
           <h1 style={{ color: "black" }}>{name}</h1>
           <h5>Click to {isLocked ? "Unlock" : "Lock"}</h5>
-          {this.state.state == "idle" ? (
+          {this.state.state == "connected" ? (
             <>
               {isLocked ? (
                 <div className="img-div locked" onClick={this.handleClick}>

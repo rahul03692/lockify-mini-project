@@ -1,27 +1,28 @@
-export class LockService {
-  apiUrl = "wss://door-unlock-test.herokuapp.com";
-  ws = {};
-  connected = false;
-  instance = null;
+// export class LockService {
+//   apiUrl = "wss://door-unlock-test.herokuapp.com";
+//   ws = {};
+//   connected = false;
+//   data = null;
 
-  static getInstance() {
-    if (this.instance == null) this.instance = new LockService();
-    return this.instance;
-  }
+//   constructor() {
+//     var ws = new WebSocket("wss://door-unlock-test.herokuapp.com");
+//     ws.onopen = () => {
+//       this.connected = true;
+//     };
+//     ws.onmessage = (msg) => {
+//       message = JSON.parse(msg.data);
+//       data = message.lockStatus;
+//     };
+//     this.ws = ws;
+//   }
 
-  constructor() {
-    var ws = new WebSocket("wss://door-unlock-test.herokuapp.com");
-    ws.onopen = () => {
-      this.connected = true;
-    };
-    this.ws = ws;
-  }
+//   openLock = async () => {
+//     if (this.connected) {
+//       this.ws.send(JSON.stringify({ command: "open" }));
+//     }
+//   };
 
-  openLock = () => {
-    if (this.connected) this.ws.send({ command: "open" });
-  };
-
-  closeLock = () => {
-    if (this.connected) this.ws.send({ command: "close" });
-  };
-}
+//   closeLock = async () => {
+//     if (this.connected) this.ws.send(JSON.stringify({ command: "close" }));
+//   };
+// }
