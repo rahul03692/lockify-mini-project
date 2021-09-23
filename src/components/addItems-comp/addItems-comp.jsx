@@ -1,6 +1,6 @@
 import React from "react";
 
-import { auth, db } from "../../firebase/firebase";
+import { auth, db } from "../../services/firebase";
 
 import "./addItems-styles.css";
 
