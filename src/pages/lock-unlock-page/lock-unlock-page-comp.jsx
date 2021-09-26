@@ -5,7 +5,6 @@ import lock from "./lock-big.png";
 import unlock from "./unlock-big.png";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./lock-unlock-page-styles.css";
-import { LockService } from "../../services/lockService";
 
 class LockUnlock extends React.Component {
   socketUrl = "wss://door-unlock-test.herokuapp.com";

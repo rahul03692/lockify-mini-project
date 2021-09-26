@@ -9,7 +9,6 @@ import { withRouter } from "react-router-dom";
 import Lists from "../lock-lists/lock-lists-comp";
 import "./home-styles.css";
 import { CircularProgress } from "@mui/material";
-import { LockService } from "../../services/lockService";
 
 class Home extends React.Component {
   constructor() {
