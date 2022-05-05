@@ -14,13 +14,13 @@ h1{
     border-radius: 10px;
 }
 .bard{
-    font-size: 350px;
+    font-size: 345px;
     font-weight: bolder;
     color: rgba(255, 255, 255, 0.4);
-    margin: 40px;
+    margin: 10px 0px 60px 0px;
     /* background-color:dodgerblue; */
     border-radius: 10px;
-    padding-bottom:40px ;
+    padding-bottom:40px;
 }
 .para{
     color: white;
@@ -50,7 +50,7 @@ h1{
 
 .main-center{
     margin: auto;
-    padding: 30px;
+    padding: 0px;
     text-align: center;
 }
 

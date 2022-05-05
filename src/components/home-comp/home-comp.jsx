@@ -41,6 +41,7 @@ class Home extends React.Component {
     db.collection(`users/${userUid}/locks`).onSnapshot((snapshot) => {
       let changes = snapshot.docChanges();
       changes.forEach((change) => {
+        console.log(change.doc.data());
         array.push({ data: change.doc.data(), uid: change.doc.id });
       });
       this.setState({ data: array, loaded: true });
@@ -56,7 +57,7 @@ class Home extends React.Component {
         <nav class="navbar navbar-light bg-light">
           <div style={{ marginLeft: 10 + "px" }}>
             <a href="/" class="navbar-brand">
-              LOCKIFY
+              SIMPLIFY
             </a>
           </div>
           <button className="btn btn-warning" onClick={this.LogOut}>
@@ -67,7 +68,7 @@ class Home extends React.Component {
           <div className="container">
             <h3 className="display-4">WELCOME BACK</h3>
             <h4 className="lead">{userEmail}</h4>
-            <h3 className="heading">Your locks </h3>
+            <h3 className="heading">Your Devices </h3>
             <hr class="my-4"></hr>
             <div className="list">
               {this.state.loaded ? (
@@ -77,6 +78,8 @@ class Home extends React.Component {
                     name={item.data.name}
                     isLocked={item.data.isLocked}
                     uid={item.uid}
+                    nodeId={item.data.nodeId}
+                    deviceId={item.data.deviceId}
                   />
                 ))
               ) : (
