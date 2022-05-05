@@ -24,8 +24,8 @@ const LandingPage = () => {
         <div className="main-center">
           <div className="link-class">
             <div class="jumbotron">
-              <div className="bard display-4">LOCKIFY</div>
-              <p className="lead para">Smart and Secure Locking System.</p>
+              <div className="bard display-4">S!MPL!FY</div>
+              <p className="lead para"><b>Simplifying your Lifes.</b></p>
               <Link to="/sign-in" className="link">
                 <button className="btn btn-light  btn-lg">SIGNIN</button>
               </Link>

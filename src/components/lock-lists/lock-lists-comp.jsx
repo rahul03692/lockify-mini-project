@@ -10,12 +10,22 @@ const Lists = (props) => {
   console.log(props.isLocked);
   const history = useHistory();
   const handleClick = () => {
+    // history.push("/locks", {
+    //   name: props.name,
+    //   isLocked: props.isLocked,
+    //   uid: props.uid,
+    //   nodeId: props.nodeId,
+    //   deviceId: props.deviceId,
+    // });
+
     history.push({
       pathname: "/locks",
       state: {
         name: props.name,
         isLocked: props.isLocked,
         uid: props.uid,
+        nodeId: props.nodeId,
+        deviceId: props.deviceId,
       },
     });
   };

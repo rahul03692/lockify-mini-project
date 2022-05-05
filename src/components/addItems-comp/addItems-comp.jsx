@@ -33,6 +33,8 @@ class AddItems extends React.Component {
         name: event.target.name.value,
         isLocked: true,
         lockCode: event.target.lockCode.value,
+        deviceId: event.target.lockCode.value[1],
+        nodeId: event.target.lockCode.value[0]
       })
       .then(() => {
         this.setState({ name: "", isLocked: false, lockCode: "" });
@@ -46,24 +48,24 @@ class AddItems extends React.Component {
     return (
       <div className="additems-top">
         <div className="additems">
-          <h2>Add Lock Configuration</h2>
+          <h2>Add Device Configuration</h2>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="email">Name</label>
             <input
               type="text"
               name="name"
               id="name"
-              placeholder="Enter lock name"
+              placeholder="Enter Device Name"
               onChange={this.handleChange}
               required
               value={this.state.name}
             />
-            <label htmlFor="id">Lock Code</label>
+            <label htmlFor="id">Device Code</label>
             <input
               type="text"
               name="lockCode"
               id="lockCode"
-              placeholder="lock code "
+              placeholder="Enter Device Code "
               onChange={this.handleChange}
               value={this.state.lockCode}
             />
@@ -78,7 +80,7 @@ class AddItems extends React.Component {
 
             <div className="buttons-class">
               <button className="btn btn-primary" type="submit">
-                Add New Lock
+                Add New Device
               </button>
             </div>
           </form>

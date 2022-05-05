@@ -5,6 +5,7 @@ import lock from "./lock-big.png";
 import unlock from "./unlock-big.png";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./lock-unlock-page-styles.css";
+import { useLocation } from "react-router-dom";
 
 class LockUnlock extends React.Component {
   socketUrl = "wss://door-unlock-test.herokuapp.com";
@@ -15,16 +16,17 @@ class LockUnlock extends React.Component {
   // not connected : socket is establishing
   // connected
 
-  constructor() {
+  constructor(props) {
     super();
     this.userUid = JSON.parse(localStorage.getItem("userData")).uid;
+    // location = useLocation();
     this.state = {
-      name: "",
-      isLocked: "",
+      ...props.location.state,
       state: "notConnected",
     };
 
-    var ws = new WebSocket("wss://door-unlock-test.herokuapp.com");
+    // var ws = new WebSocket("wss://door-unlock-test.herokuapp.com");
+    var ws = new WebSocket("ws://192.168.47.191:3080/");
     ws.onopen = () => {
       this.setState({ state: "connected" });
       this.ws = ws;
@@ -32,14 +34,14 @@ class LockUnlock extends React.Component {
 
     ws.onmessage = (msg) => {
       var message = JSON.parse(msg.data);
-      var status = message.lockStatus;
+      var status = message.deviceStatus;
       db.collection(`users/${this.userUid}/locks`)
         .doc(this.props.location.state.uid)
         .update({
-          isLocked: status !== "open",
+          isLocked: status !== "on",
         })
         .then(() => {
-          this.setState({ state: "connected", isLocked: status !== "open" });
+          this.setState({ state: "connected", isLocked: status !== "on" });
         })
         .catch((err) => console.log(err.message));
     };
@@ -68,21 +70,31 @@ class LockUnlock extends React.Component {
 
   handleClick = () => {
     this.setState({ state: "inProgress" });
+    //console.log(`${this.state.nodeId}${this.state.deviceId}1`);
     if (this.state.isLocked) {
-      this.ws.send(JSON.stringify({ command: "open" }));
+      this.ws.send(
+        JSON.stringify({
+          command: `${this.state.nodeId}${this.state.deviceId}1`,
+        })
+      );
     } else {
-      this.ws.send(JSON.stringify({ command: "close" }));
+      this.ws.send(
+        JSON.stringify({
+          command: `${this.state.nodeId}${this.state.deviceId}0`,
+        })
+      );
     }
   };
 
   render() {
     const { name, isLocked } = this.state;
+    console.log(name, isLocked, this.state.state);
     return (
       <>
         <nav class="navbar navbar-light bg-light">
           <div style={{ marginLeft: 10 + "px" }}>
             <a href="/home" class="navbar-brand">
-              LOCKIFY
+              SIMPLIFY
             </a>
           </div>
           <button className="btn btn-warning" onClick={this.LogOut}>
