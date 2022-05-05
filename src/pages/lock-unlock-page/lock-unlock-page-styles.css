@@ -25,11 +25,11 @@
 }
 
 .locked {
-  background-color: red;
+  /* background-color: red; */
   border-radius: 20px;
 }
 
 .unlocked {
   border-radius: 20px;
-  background-color: green;
+  /* background-color: green; */
 }

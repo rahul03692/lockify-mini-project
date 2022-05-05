@@ -20,7 +20,7 @@ h1{
     margin: 10px 0px 60px 0px;
     /* background-color:dodgerblue; */
     border-radius: 10px;
-    padding-bottom:40px;
+    padding-bottom:100px;
 }
 .para{
     color: white;
@@ -32,12 +32,13 @@ h1{
     
 }
 .bg {
-  background-image: url('https://cdn.dribbble.com/users/736038/screenshots/2544871/untitled-1.gif');
+  background-image: url('https://cdn.dribbble.com/users/148670/screenshots/2853092/switch.gif');
   background-color: #fe5e50;
   height: 100%; 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 .landing-page{
     position: absolute;

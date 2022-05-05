@@ -36,9 +36,9 @@ const Lists = (props) => {
         <li className="list-group-item d-flex justify-content-between align-items-center">
           <h4>{props.name}</h4>
           {props.isLocked === true ? (
-            <span className="badge bg-primary rounded-pill">Locked</span>
+            <span className="badge bg-danger rounded-pill">ON</span>
           ) : (
-            <span className="badge bg-danger rounded-pill">Open</span>
+            <span className="badge bg-primary rounded-pill">OFF</span>
           )}
         </li>
       </ul>
