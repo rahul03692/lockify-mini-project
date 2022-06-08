@@ -49,7 +49,7 @@ const Lists = (props) => {
                 alt="fan off"
               ></img>
             )
-          ) : props.isLocked === true ? (
+          ) : (props.lockCode[2] === "2" ? (props.isLocked === true ? (
             <img
               src="https://cdn-icons.flaticon.com/png/512/2988/premium/2988036.png?token=exp=1654715438~hmac=854f223c09b842a4a6231d478344c3b0"
               alt="light on"
@@ -59,7 +59,13 @@ const Lists = (props) => {
               src="https://cdn-icons.flaticon.com/png/512/2987/premium/2987972.png?token=exp=1654715207~hmac=a5d65b34958b405f211774424c2f8ddf"
               alt="light off"
             ></img>
-          )}
+          )) : (
+            (props.isLocked === true ? (
+              <img src="https://cdn-icons.flaticon.com/png/128/2607/premium/2607189.png?token=exp=1654718169~hmac=9407c58a65fd9956ec4079707cbcccb2" alt="door lock" />
+            ) : (
+              <img src="https://cdn-icons.flaticon.com/png/128/3944/premium/3944622.png?token=exp=1654718169~hmac=f6625c6bb13787354e9a6c45f66567af" alt="door unlocked" />
+            ))
+          ))}
           <h4>{props.name}</h4>
           {props.isLocked === true ? (
             <span className="badge bg-danger rounded-pill">ON</span>
