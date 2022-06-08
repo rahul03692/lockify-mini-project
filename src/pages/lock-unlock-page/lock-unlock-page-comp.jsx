@@ -29,8 +29,8 @@ class LockUnlock extends React.Component {
       state: "notConnected",
     };
 
-    var ws = new WebSocket("wss://door-unlock-test.herokuapp.com");
-    // var ws = new WebSocket("ws://192.168.47.191:3080/");
+    //var ws = new WebSocket("wss://door-unlock-test.herokuapp.com");
+    var ws = new WebSocket("ws://192.168.47.191:3080/");
     ws.onopen = () => {
       this.setState({ state: "connected" });
       this.ws = ws;
@@ -107,17 +107,17 @@ class LockUnlock extends React.Component {
         </nav>
         <div className="lock-unlock">
           <h1 style={{ color: "black" }}>{name}</h1>
-          <h5>Click to {isLocked ? "Off" : "On"}</h5>
+          <h5>Click to {isLocked ? "On" : "Off"}</h5>
           {this.state.state == "connected" ? (
             <>
               {isLocked ? (
-                <div className="img-div unlocked" onClick={this.handleClick}>
-                  <img src={on} alt="lock" className="img" />
+                <div className="img-div locked" onClick={this.handleClick}>
+                  <img src={off} alt="lock" className="img" />
                   {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
                 </div>
               ) : (
-                <div className="img-div locked" onClick={this.handleClick}>
-                  <img src={off} alt="unlock" className="img" />
+                <div className="img-div unlocked" onClick={this.handleClick}>
+                  <img src={on} alt="unlock" className="img" />
                   {/* <h2>{isLocked==="true"?"Locked":"Unlocked"}</h2> */}
                 </div>
               )}

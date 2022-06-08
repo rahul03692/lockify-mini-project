@@ -34,7 +34,7 @@ class AddItems extends React.Component {
         isLocked: true,
         lockCode: event.target.lockCode.value,
         deviceId: event.target.lockCode.value[1],
-        nodeId: event.target.lockCode.value[0]
+        nodeId: event.target.lockCode.value[0],
       })
       .then(() => {
         this.setState({ name: "", isLocked: false, lockCode: "" });
@@ -69,6 +69,7 @@ class AddItems extends React.Component {
               onChange={this.handleChange}
               value={this.state.lockCode}
             />
+            
             {/* <label htmlFor="isLocked">isLocked<input
               type="checkbox"
               name="isLocked"
@@ -77,7 +78,6 @@ class AddItems extends React.Component {
               onChange={this.handle}
             />
             </label> */}
-
             <div className="buttons-class">
               <button className="btn btn-primary" type="submit">
                 Add New Device

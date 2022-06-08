@@ -1,11 +1,8 @@
 import React from "react";
 
 //import { Redirect } from "react-router";
-
 import { auth, db } from "../../services/firebase";
-
 import { withRouter } from "react-router-dom";
-
 import Lists from "../lock-lists/lock-lists-comp";
 import "./home-styles.css";
 import { CircularProgress } from "@mui/material";
@@ -71,20 +68,25 @@ class Home extends React.Component {
             <h3 className="heading">Your Devices </h3>
             <hr class="my-4"></hr>
             <div className="list">
-              {this.state.loaded ? (
-                data.map((item) => (
-                  <Lists
-                    key={item.uid}
-                    name={item.data.name}
-                    isLocked={item.data.isLocked}
-                    uid={item.uid}
-                    nodeId={item.data.nodeId}
-                    deviceId={item.data.deviceId}
-                  />
-                ))
-              ) : (
-                <CircularProgress style={{ margin: "auto" }} />
-              )}
+              <ul>
+                {this.state.loaded ? (
+                  data.map((item) => (
+                    
+                      <Lists
+                        key={item.uid}
+                        name={item.data.name}
+                        isLocked={item.data.isLocked}
+                        uid={item.uid}
+                        nodeId={item.data.nodeId}
+                        deviceId={item.data.deviceId}
+                        lockCode={item.data.lockCode}
+                      />
+                    
+                  ))
+                ) : (
+                  <CircularProgress style={{ margin: "auto" }} />
+                )}
+              </ul>
             </div>
           </div>
         </div>
