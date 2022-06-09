@@ -36,7 +36,7 @@ const Lists = (props) => {
     <li>
     <div className="list-tiles" onClick={handleClick}>
       <ul className="list-group">
-        <li className="list-group-item d-flex justify-content-between align-items-center">
+        <li className="list-group-item d-flex dir justify-content-between align-items-center">
           {props.lockCode[2] === "1" ? (
             props.isLocked === true ? (
               <img
