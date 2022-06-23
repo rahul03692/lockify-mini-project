@@ -1,10 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-
 import { Link, useHistory } from "react-router-dom";
-
-//import lock from './lock.jpg';
-
 import "./landing-page-styles.css";
 
 const LandingPage = () => {

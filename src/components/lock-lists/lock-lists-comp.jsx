@@ -40,30 +40,30 @@ const Lists = (props) => {
           {props.lockCode[2] === "1" ? (
             props.isLocked === true ? (
               <img
-                src="https://youraircomfort.com/wp-content/uploads/2017/07/fan-gif.gif"
+                src="https://firebasestorage.googleapis.com/v0/b/dairyweb-3dca5.appspot.com/o/fan.gif?alt=media&token=6cc8b377-cd73-4b7b-b24d-ded4fdd6b880"
                 alt="fan on"
               ></img>
             ) : (
               <img
-                src="https://cdn-icons.flaticon.com/png/128/545/premium/545932.png?token=exp=1654715183~hmac=64b64dd764201bfdd748fc1477827306"
+                src="https://firebasestorage.googleapis.com/v0/b/dairyweb-3dca5.appspot.com/o/Screenshot%202022-06-14%20233902.png?alt=media&token=36935b04-cfaf-40a7-972b-73d3f9c57f4e"
                 alt="fan off"
               ></img>
             )
           ) : (props.lockCode[2] === "2" ? (props.isLocked === true ? (
             <img
-              src="https://cdn-icons.flaticon.com/png/512/2988/premium/2988036.png?token=exp=1654715438~hmac=854f223c09b842a4a6231d478344c3b0"
+              src="https://firebasestorage.googleapis.com/v0/b/dairyweb-3dca5.appspot.com/o/lighton.jpg?alt=media&token=201703ce-326a-40f0-8250-5ddf180b7896"
               alt="light on"
             ></img>
           ) : (
             <img
-              src="https://cdn-icons.flaticon.com/png/512/2987/premium/2987972.png?token=exp=1654715207~hmac=a5d65b34958b405f211774424c2f8ddf"
+              src="https://firebasestorage.googleapis.com/v0/b/dairyweb-3dca5.appspot.com/o/lightoff.png?alt=media&token=f8d6f84e-40b8-470c-aa6f-94c2ae42f57d"
               alt="light off"
             ></img>
           )) : (
             (props.isLocked === true ? (
-              <img src="https://cdn-icons.flaticon.com/png/128/2607/premium/2607189.png?token=exp=1654718169~hmac=9407c58a65fd9956ec4079707cbcccb2" alt="door lock" />
+              <img src="https://firebasestorage.googleapis.com/v0/b/dairyweb-3dca5.appspot.com/o/door_closed.png?alt=media&token=c9045804-a148-438a-85e2-b965c8f84bc5" alt="door lock" />
             ) : (
-              <img src="https://cdn-icons.flaticon.com/png/128/3944/premium/3944622.png?token=exp=1654718169~hmac=f6625c6bb13787354e9a6c45f66567af" alt="door unlocked" />
+              <img src="https://firebasestorage.googleapis.com/v0/b/dairyweb-3dca5.appspot.com/o/door_open.png?alt=media&token=1459fbe0-332d-422a-a799-f032cac4b75b" alt="door unlocked" />
             ))
           ))}
           <h4>{props.name}</h4>
